@@ -4,7 +4,7 @@ import './App.css';
 // <--- NEW: Defininng Backend API URL here
 const API_BASE_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:5000';
 // Note: 'import.meta.env.VITE_BACKEND_API_URL' is for Vite. For Create React App, it's process.env.REACT_APP_BACKEND_API_URL
-
+console.log("API_BASE_URL:", API_BASE_URL); // Debugging line to check the URL
 function App() {
   const [url, setUrl] = useState('');
   const [method, setMethod] = useState('GET');
@@ -149,40 +149,41 @@ function App() {
   };
 
   // --- NEW: Authentication Handlers ---
-  const handleAuth = async (e) => {
+ const handleAuth = async (e) => {
     e.preventDefault();
     setAuthMessage(null);
     setLoading(true);
 
     const endpoint = isRegistering ? 'register' : 'login';
     try {
-      const res = await fetch(`await fetch(${API_BASE_URL}/api/${endpoint}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: authUsername, password: authPassword }),
-      });
+        // CORRECTED LINE: Remove the extra 'await fetch(' from inside the backticks
+        const res = await fetch(`${API_BASE_URL}/api/${endpoint}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: authUsername, password: authPassword }),
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.message || 'Authentication failed');
-      }
+        if (!res.ok) {
+            throw new Error(data.message || 'Authentication failed');
+        }
 
-      setAuthMessage(data.message);
-      setToken(data.token);
-      setLoggedInUser(authUsername);
-      localStorage.setItem('token', data.token); // Store token in local storage
-      localStorage.setItem('username', authUsername); // Store username in local storage
-      setAuthUsername(''); // Clear form fields
-      setAuthPassword(''); // Clear form fields
-      fetchHistory(); // Fetch history for the logged-in user
+        setAuthMessage(data.message);
+        setToken(data.token);
+        setLoggedInUser(authUsername);
+        localStorage.setItem('token', data.token); // Store token
+        localStorage.setItem('username', authUsername); // Store username
+        setAuthUsername('');
+        setAuthPassword('');
+        fetchHistory(); // Fetch history for the logged-in user
 
     } catch (err) {
-      setAuthMessage(err.message || 'An error occurred during authentication');
+        setAuthMessage(err.message || 'An error occurred during authentication');
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   const handleLogout = () => {
     setToken(null);
