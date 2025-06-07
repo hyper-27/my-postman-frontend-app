@@ -195,7 +195,7 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '120px', margin: '20px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div className="App" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '50px auto', padding: '50px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <h1>My Postman Clone</h1>
 
       {/* Authentication Section - NEW */}
