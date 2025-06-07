@@ -9,32 +9,36 @@ html, body, #root {
   padding: 0;
   height: 100%; /* Ensure full height for layout containers */
   width: 100%;
-  /* Modern Dark Theme Base */
-  background-color: #121212; /* Very dark background */
-  color: #e0e0e0; /* Light grey text for contrast */
-  font-family: 'Inter', 'Roboto', 'Segoe UI', sans-serif; /* Modern font stack */
+  /* Modern Light Theme Base with Gradient */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* Modern font stack as per example */
   line-height: 1.6;
+  color: #333; /* Darker text for light background */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Vibrant gradient background */
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex; /* Use flex to center the .App container */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .App {
-  max-width: 1400px; /* Slightly wider for more content space */
-  margin: 30px auto; /* More margin from edges */
-  padding: 30px;
-  background-color: #1e1e1e; /* Darker main container */
-  border: 1px solid #333; /* Softer, darker border */
-  border-radius: 12px; /* More rounded corners */
+  max-width: 1200px; /* Max width for content container */
+  width: calc(100% - 40px); /* Adjust width to account for body margin */
+  margin: 20px auto; /* Centered with vertical margin */
+  padding: 30px; /* More generous padding */
+  background-color: #ffffff; /* Clean white background for the app content */
+  border: 1px solid #e0e0e0; /* Subtle light border */
+  border-radius: 12px; /* More rounded corners for modern look */
   display: flex;
   flex-direction: column;
   gap: 25px; /* Increased gap for breathing room */
-  min-height: calc(100vh - 60px); /* Adjust min-height based on new margin */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft, pronounced shadow for depth */
 }
 
 h1, h2, h3 {
-  color: #f0f0f0; /* Slightly lighter headings */
+  color: #2c3e50; /* Darker, more pronounced headings */
   margin-top: 0;
   margin-bottom: 15px;
-  font-weight: 500; /* Modern heading weight */
+  font-weight: 600; /* Slightly bolder headings for emphasis */
 }
 
 /* Style for the main content area (request + history) */
@@ -50,54 +54,51 @@ h1, h2, h3 {
 .history-section,
 .auth-section { /* Apply consistent styling to all main sections */
   padding: 20px;
-  background-color: #2a2a2a; /* Darker background for sections */
-  border: 1px solid #444; /* Darker, subtle borders */
+  background-color: #f8f9fa; /* Very light background for sections */
+  border: 1px solid #dee2e6; /* Light grey border */
   border-radius: 8px; /* Consistent rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle section shadow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle section shadow */
   display: flex;
   flex-direction: column;
 }
 
 .request-section {
   flex: 2; /* Takes twice the space */
-  /* Remove max-width here, let flex handle it */
   min-width: 400px; /* Increased min-width for larger screens */
 }
 
 .history-section {
   flex: 1; /* Takes normal space */
-  /* Remove max-width here, let flex handle it */
-  max-height: 850px; /* Slightly increased max-height */
+  max-height: 850px; /* Max-height for scrollable history */
   overflow-y: auto; /* Enable vertical scrolling */
   min-width: 300px; /* Ensure history section doesn't become too narrow */
 }
 
-/* Scrollbar Styling for History Section */
+/* Scrollbar Styling for History Section (light theme) */
 .history-section::-webkit-scrollbar {
   width: 8px;
 }
 .history-section::-webkit-scrollbar-track {
-  background: #2a2a2a; /* Scrollbar track matches section background */
+  background: #f1f1f1; /* Light scrollbar track */
   border-radius: 10px;
 }
 .history-section::-webkit-scrollbar-thumb {
-  background: #555; /* Darker scrollbar thumb */
+  background: #ccc; /* Medium grey scrollbar thumb */
   border-radius: 10px;
 }
 .history-section::-webkit-scrollbar-thumb:hover {
-  background: #777; /* Lighter on hover */
+  background: #a0a0a0; /* Darker on hover */
 }
-
 
 /* Form Elements: Input, Select, Textarea */
 input, select, textarea {
   width: calc(100% - 20px); /* Account for padding */
   padding: 12px; /* More padding */
   margin-bottom: 15px; /* More space below inputs */
-  border: 1px solid #555; /* Darker border */
+  border: 1px solid #ced4da; /* Light border */
   border-radius: 6px; /* Slightly more rounded */
-  background-color: #333; /* Darker input background */
-  color: #e0e0e0; /* Light text */
+  background-color: #ffffff; /* White input background */
+  color: #343a40; /* Dark text */
   font-size: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -120,17 +121,20 @@ button {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle button shadow */
 }
 
 button:hover {
   transform: translateY(-1px); /* Slight lift on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
 }
 
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none; /* No lift when disabled */
+  box-shadow: none;
 }
 
 /* Specific Button Styles */
@@ -177,15 +181,15 @@ button[onClick="fetchHistory"]:hover:not(:disabled) {
 /* Response Section Styling */
 .response-section {
   padding: 20px;
-  background-color: #2a2a2a; /* Consistent section background */
-  border: 1px solid #444;
+  background-color: #f8f9fa; /* Consistent section background */
+  border: 1px solid #dee2e6;
   border-radius: 8px;
   margin-top: 25px; /* Space above response section */
 }
 
 .response-section pre {
-  background-color: #1a1a1a; /* Even darker background for code blocks */
-  color: #92b0c3; /* Light blue/grey for code text */
+  background-color: #e9ecef; /* Light grey for code blocks */
+  color: #343a40; /* Dark text for code */
   padding: 15px;
   border-radius: 6px;
   max-height: 250px; /* Slightly adjusted max height */
@@ -194,12 +198,12 @@ button[onClick="fetchHistory"]:hover:not(:disabled) {
   word-break: break-word;
   font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; /* Monospaced font for code */
   font-size: 0.9em;
-  border: 1px solid #3a3a3a; /* Border for code blocks */
+  border: 1px solid #ced4da; /* Border for code blocks */
 }
 
 /* Highlighted text for status */
 .response-section p strong {
-  color: #5cb85c; /* Green for success status */
+  color: #28a745; /* Green for success status */
 }
 
 /* Error messages */
@@ -216,11 +220,10 @@ p[style*="color: red"], .auth-section p[style*="color: red"] {
   margin-bottom: 10px;
 }
 
-
 /* History List Item Styling */
 .history-list > div { /* Target each history item */
-  background-color: #333; /* Darker background for history items */
-  border: 1px solid #444;
+  background-color: #ffffff; /* White background for history items */
+  border: 1px solid #e9ecef;
   padding: 15px;
   margin-bottom: 10px; /* Space between items */
   border-radius: 6px;
@@ -229,9 +232,9 @@ p[style*="color: red"], .auth-section p[style*="color: red"] {
 }
 
 .history-list > div:hover {
-  background-color: #444; /* Lighter on hover */
+  background-color: #f0f0f0; /* Slightly darker on hover */
   transform: translateY(-2px); /* Subtle lift */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Slight shadow on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Slight shadow on hover */
 }
 
 .history-list p {
@@ -245,23 +248,23 @@ p[style*="color: red"], .auth-section p[style*="color: red"] {
 }
 
 .history-list p span {
-  color: #6bb0ff; /* Lighter blue for URL */
+  color: #495057; /* Darker grey for URL */
   word-break: break-all; /* Break long URLs */
 }
 
 .history-list p[style*="font-size: 0.8em"] { /* Status text */
-  color: #a0a0a0; /* Softer grey */
+  color: #6c757d; /* Softer grey */
   margin-top: 5px;
 }
 
 .history-list p[style*="font-size: 0.7em"] { /* Timestamp text */
-  color: #777; /* Even softer grey */
+  color: #adb5bd; /* Even softer grey */
   margin-top: 5px;
 }
 
 hr {
   border: none;
-  border-top: 1px dashed #555; /* Dashed line for separation */
+  border-top: 1px dashed #ced4da; /* Dashed line for separation */
   margin: 30px 0;
 }
 
@@ -270,6 +273,9 @@ hr {
   .App {
     padding: 20px;
     margin: 20px;
+  }
+  body, html, #root { /* Center the app container vertically and horizontally */
+    align-items: flex-start; /* Reset align-items to avoid pushing to center on smaller screens */
   }
   .App > div[style*="display: flex"] {
     flex-direction: column; /* Stack sections vertically on medium screens */
@@ -296,8 +302,10 @@ hr {
   .App {
     margin: 10px;
     padding: 15px;
+    border-radius: 8px; /* Slightly less rounded on very small screens */
   }
   input, select, textarea, button {
     padding: 10px;
+    font-size: 0.95rem;
   }
 }
