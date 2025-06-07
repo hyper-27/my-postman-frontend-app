@@ -9,75 +9,295 @@ html, body, #root {
   padding: 0;
   height: 100%; /* Ensure full height for layout containers */
   width: 100%;
+  /* Modern Dark Theme Base */
+  background-color: #121212; /* Very dark background */
+  color: #e0e0e0; /* Light grey text for contrast */
+  font-family: 'Inter', 'Roboto', 'Segoe UI', sans-serif; /* Modern font stack */
+  line-height: 1.6;
 }
 
 .App {
-  font-family: 'Arial', sans-serif;
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  max-width: 1400px; /* Slightly wider for more content space */
+  margin: 30px auto; /* More margin from edges */
+  padding: 30px;
+  background-color: #1e1e1e; /* Darker main container */
+  border: 1px solid #333; /* Softer, darker border */
+  border-radius: 12px; /* More rounded corners */
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  /* Add min-height to prevent collapse if content is sparse */
-  min-height: calc(100vh - 40px); /* 100vh minus top/bottom margin */
+  gap: 25px; /* Increased gap for breathing room */
+  min-height: calc(100vh - 60px); /* Adjust min-height based on new margin */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+}
+
+h1, h2, h3 {
+  color: #f0f0f0; /* Slightly lighter headings */
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 500; /* Modern heading weight */
 }
 
 /* Style for the main content area (request + history) */
 .App > div[style*="display: flex"] { /* Targets the inner flex div */
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
-  gap: 20px;
-  /* Ensures the flex items don't shrink too much */
-  min-height: 0; /* Important for flex items inside a flex container */
-  flex-grow: 1; /* Allows this container to grow to fill space */
+  gap: 25px; /* Consistent gap */
+  min-height: 0;
+  flex-grow: 1;
 }
 
 .request-section,
-.history-section {
-  padding: 15px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  /* These flex values allow them to share space */
-  /* For example, request-section takes 2/3 and history-section takes 1/3 */
-  flex-basis: 0; /* Important when using flex-grow/shrink */
-  flex-grow: 1;
-  flex-shrink: 1; /* Allow shrinking if needed */
-  min-width: 300px; /* Adjust this to prevent collapse on small screens */
-  overflow: hidden; /* Hide overflow if content is too wide */
+.history-section,
+.auth-section { /* Apply consistent styling to all main sections */
+  padding: 20px;
+  background-color: #2a2a2a; /* Darker background for sections */
+  border: 1px solid #444; /* Darker, subtle borders */
+  border-radius: 8px; /* Consistent rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle section shadow */
   display: flex;
-  flex-direction: column; /* Organize content within each section vertically */
+  flex-direction: column;
 }
 
 .request-section {
   flex: 2; /* Takes twice the space */
-  max-width: 66%; /* Roughly 2/3 of the parent container */
+  /* Remove max-width here, let flex handle it */
+  min-width: 400px; /* Increased min-width for larger screens */
 }
 
 .history-section {
   flex: 1; /* Takes normal space */
-  max-width: 33%; /* Roughly 1/3 of the parent container */
-  max-height: 800px; /* <--- CRITICAL: Keep this for scrollable history */
-  overflow-y: auto; /* <--- CRITICAL: Enable vertical scrolling */
+  /* Remove max-width here, let flex handle it */
+  max-height: 850px; /* Slightly increased max-height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  min-width: 300px; /* Ensure history section doesn't become too narrow */
 }
 
-/* Specific styles for response/headers pre tags */
-.response-section pre {
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 4px;
-  max-height: 300px; /* Adjust as needed */
-  overflow-y: auto;
-  white-space: pre-wrap; /* Allows text to wrap */
-  word-break: break-word; /* Breaks long words */
+/* Scrollbar Styling for History Section */
+.history-section::-webkit-scrollbar {
+  width: 8px;
+}
+.history-section::-webkit-scrollbar-track {
+  background: #2a2a2a; /* Scrollbar track matches section background */
+  border-radius: 10px;
+}
+.history-section::-webkit-scrollbar-thumb {
+  background: #555; /* Darker scrollbar thumb */
+  border-radius: 10px;
+}
+.history-section::-webkit-scrollbar-thumb:hover {
+  background: #777; /* Lighter on hover */
 }
 
-/* Ensure form elements within sections don't cause overflow */
-.request-section input,
-.request-section select,
-.request-section textarea {
+
+/* Form Elements: Input, Select, Textarea */
+input, select, textarea {
   width: calc(100% - 20px); /* Account for padding */
-  max-width: 100%; /* Prevent expanding beyond container */
+  padding: 12px; /* More padding */
+  margin-bottom: 15px; /* More space below inputs */
+  border: 1px solid #555; /* Darker border */
+  border-radius: 6px; /* Slightly more rounded */
+  background-color: #333; /* Darker input background */
+  color: #e0e0e0; /* Light text */
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff; /* Accent color on focus */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle glow */
+  outline: none; /* Remove default outline */
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+/* Buttons */
+button {
+  padding: 12px 20px; /* More padding */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  transform: translateY(-1px); /* Slight lift on hover */
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none; /* No lift when disabled */
+}
+
+/* Specific Button Styles */
+button[onClick="sendRequest"] { /* Send Request button */
+  background-color: #007bff; /* Primary blue */
+  color: white;
+}
+button[onClick="sendRequest"]:hover:not(:disabled) {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.auth-section button[type="submit"] { /* Login/Register button */
+  background-color: #28a745; /* Green for success/action */
+  color: white;
+}
+.auth-section button[type="submit"]:hover:not(:disabled) {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.auth-section button[onClick^="() => setIsRegistering"] { /* Toggle auth button */
+  background-color: #6c757d; /* Grey for secondary action */
+  color: white;
+}
+.auth-section button[onClick^="() => setIsRegistering"]:hover {
+  background-color: #5a6268;
+}
+
+button[onClick="handleLogout"] { /* Logout button */
+  background-color: #dc3545; /* Red for destructive action */
+  color: white;
+}
+button[onClick="handleLogout"]:hover {
+  background-color: #c82333;
+}
+
+button[onClick="fetchHistory"] { /* Refresh History button */
+  background-color: #6c757d; /* Consistent grey */
+  color: white;
+}
+button[onClick="fetchHistory"]:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+/* Response Section Styling */
+.response-section {
+  padding: 20px;
+  background-color: #2a2a2a; /* Consistent section background */
+  border: 1px solid #444;
+  border-radius: 8px;
+  margin-top: 25px; /* Space above response section */
+}
+
+.response-section pre {
+  background-color: #1a1a1a; /* Even darker background for code blocks */
+  color: #92b0c3; /* Light blue/grey for code text */
+  padding: 15px;
+  border-radius: 6px;
+  max-height: 250px; /* Slightly adjusted max height */
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; /* Monospaced font for code */
+  font-size: 0.9em;
+  border: 1px solid #3a3a3a; /* Border for code blocks */
+}
+
+/* Highlighted text for status */
+.response-section p strong {
+  color: #5cb85c; /* Green for success status */
+}
+
+/* Error messages */
+p[style*="color: red"], .auth-section p[style*="color: red"] {
+  color: #dc3545 !important; /* Force red for errors */
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.auth-section p[style*="color: green"] {
+  color: #28a745 !important; /* Force green for success messages */
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+
+/* History List Item Styling */
+.history-list > div { /* Target each history item */
+  background-color: #333; /* Darker background for history items */
+  border: 1px solid #444;
+  padding: 15px;
+  margin-bottom: 10px; /* Space between items */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.history-list > div:hover {
+  background-color: #444; /* Lighter on hover */
+  transform: translateY(-2px); /* Subtle lift */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Slight shadow on hover */
+}
+
+.history-list p {
+  margin: 0;
+  padding: 0;
+}
+
+.history-list p strong {
+  color: #007bff; /* Primary blue for method */
+  margin-right: 5px;
+}
+
+.history-list p span {
+  color: #6bb0ff; /* Lighter blue for URL */
+  word-break: break-all; /* Break long URLs */
+}
+
+.history-list p[style*="font-size: 0.8em"] { /* Status text */
+  color: #a0a0a0; /* Softer grey */
+  margin-top: 5px;
+}
+
+.history-list p[style*="font-size: 0.7em"] { /* Timestamp text */
+  color: #777; /* Even softer grey */
+  margin-top: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed #555; /* Dashed line for separation */
+  margin: 30px 0;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .App {
+    padding: 20px;
+    margin: 20px;
+  }
+  .App > div[style*="display: flex"] {
+    flex-direction: column; /* Stack sections vertically on medium screens */
+    gap: 20px;
+  }
+  .request-section,
+  .history-section {
+    flex: none; /* Remove flex grow/shrink */
+    width: 100%; /* Take full width */
+    max-width: none; /* Override max-width */
+  }
+  .history-section {
+      max-height: 500px; /* Adjust history height for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  .App {
+    margin: 10px;
+    padding: 15px;
+  }
+  input, select, textarea, button {
+    padding: 10px;
+  }
 }
