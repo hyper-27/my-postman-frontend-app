@@ -199,7 +199,7 @@ function App() {
       <h1>My Postman Clone</h1>
 
       {/* Authentication Section - NEW */}
-      <div className="auth-section" style={{ border: '1px solid #eee', padding: '15px', borderRadius: '5px', marginBottom: '20px', backgroundColor: '#ffffff' }}>
+      <div className="auth-section" style={{ border: '1px solid #eee', padding: '150px', borderRadius: '5px', marginBottom: '200px', backgroundColor: '#ffffff' }}>
         {token ? ( // If token exists, user is logged in
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p>Logged in as: <strong>{loggedInUser}</strong></p>
