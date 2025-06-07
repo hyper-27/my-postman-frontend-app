@@ -195,11 +195,11 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '1200px', margin: '20px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div className="App" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '120px', margin: '20px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <h1>My Postman Clone</h1>
 
       {/* Authentication Section - NEW */}
-      <div className="auth-section" style={{ border: '1px solid #eee', padding: '150px', borderRadius: '5px', marginBottom: '200px', backgroundColor: '#ffffff' }}>
+      <div className="auth-section" style={{ border: '1px solid #eee', padding: '15px', borderRadius: '5px', marginBottom: '20px', backgroundColor: '#ffffff' }}>
         {token ? ( // If token exists, user is logged in
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <p>Logged in as: <strong>{loggedInUser}</strong></p>
