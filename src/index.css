@@ -1,11 +1,16 @@
+/* General Box Sizing for predictable layout - from your previous request */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Root variables (for font synthesis and rendering) - from your new input */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /* Using provided font-family */
+  line-height: 1.5; /* Adjusted to 1.5 as per your input */
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light dark; /* Keep this for potential future dark mode toggle */
+  /* Specific colors for :root are now handled by body/App for the light theme */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,56 +18,318 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Link styling - from your new input */
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #646cff; /* Primary link color */
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #535bf2; /* Darker on hover */
 }
 
-body {
+/* Basic body and root styling - combined with your new input */
+html, body, #root {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  /* Modern Light Theme Base with Gradient - from previous successful theme */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* Prioritize Inter from previous successful theme */
+  line-height: 1.6; /* Prioritize 1.6 from previous successful theme for readability */
+  color: #333; /* Darker text for light background */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Vibrant gradient background */
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex; /* Use flex to center the .App container */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
+/* Heading 1 specific styling - from your new input */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3.2em; /* Larger as per your input */
+  line-height: 1.1; /* Tighter line height */
+  color: #2c3e50; /* Consistent with previous theme's headings */
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-button {
+h2, h3 { /* Other headings from previous theme */
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+
+/* App Container - from previous successful theme */
+.App {
+  max-width: 1200px;
+  width: calc(100% - 40px);
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the main content area (request + history) - from previous successful theme */
+.App > div[style*="display: flex"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+.request-section,
+.history-section,
+.auth-section {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.request-section {
+  flex: 2;
+  min-width: 400px;
+}
+
+.history-section {
+  flex: 1;
+  max-height: 850px;
+  overflow-y: auto;
+  min-width: 300px;
+}
+
+/* Scrollbar Styling for History Section (light theme) */
+.history-section::-webkit-scrollbar {
+  width: 8px;
+}
+.history-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.history-section::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.history-section::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* Form Elements: Input, Select, Textarea - from previous successful theme */
+input, select, textarea {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #343a40;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Buttons - adapted from your new input and previous theme */
+button {
+  border-radius: 8px; /* Adopted from your new input */
+  border: 1px solid transparent; /* Adopted from your new input */
+  padding: 0.6em 1.2em; /* Adopted from your new input */
+  font-size: 1em; /* Adopted from your new input */
+  font-weight: 500; /* Adopted from your new input */
+  font-family: inherit; /* Adopted from your new input */
+  background-color: #f9f9f9; /* Default light background from your new input's @media light */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; /* Combined transitions */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle button shadow from previous theme */
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: #646cff; /* Border hover from your new input */
+  transform: translateY(-1px); /* Slight lift from previous theme */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow from previous theme */
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto -webkit-focus-ring-color; /* Focus style from your new input */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
+
+/* Specific Button Styles - from previous theme, overriding default button */
+button[onClick="sendRequest"] { /* Send Request button */
+  background-color: #007bff; /* Primary blue */
+  color: white;
+  border-color: #007bff; /* Add border color for consistency with hover */
+}
+button[onClick="sendRequest"]:hover:not(:disabled) {
+  background-color: #0056b3; /* Darker blue on hover */
+  border-color: #0056b3;
+}
+
+.auth-section button[type="submit"] { /* Login/Register button */
+  background-color: #28a745; /* Green for success/action */
+  color: white;
+  border-color: #28a745;
+}
+.auth-section button[type="submit"]:hover:not(:disabled) {
+  background-color: #218838; /* Darker green on hover */
+  border-color: #218838;
+}
+
+.auth-section button[onClick^="() => setIsRegistering"] { /* Toggle auth button */
+  background-color: #6c757d; /* Grey for secondary action */
+  color: white;
+  border-color: #6c757d;
+}
+.auth-section button[onClick^="() => setIsRegistering"]:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+button[onClick="handleLogout"] { /* Logout button */
+  background-color: #dc3545; /* Red for destructive action */
+  color: white;
+  border-color: #dc3545;
+}
+button[onClick="handleLogout"]:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+button[onClick="fetchHistory"] { /* Refresh History button */
+  background-color: #6c757d; /* Consistent grey */
+  color: white;
+  border-color: #6c757d;
+}
+button[onClick="fetchHistory"]:hover:not(:disabled) {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+/* Response Section Styling - from previous successful theme */
+.response-section {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+.response-section pre {
+  background-color: #e9ecef;
+  color: #343a40;
+  padding: 15px;
+  border-radius: 6px;
+  max-height: 250px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  border: 1px solid #ced4da;
+}
+
+/* Highlighted text for status */
+.response-section p strong {
+  color: #28a745;
+}
+
+/* Error messages */
+p[style*="color: red"], .auth-section p[style*="color: red"] {
+  color: #dc3545 !important;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.auth-section p[style*="color: green"] {
+  color: #28a745 !important;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* History List Item Styling */
+.history-list > div {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.history-list > div:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.history-list p {
+  margin: 0;
+  padding: 0;
+}
+
+.history-list p strong {
+  color: #007bff;
+  margin-right: 5px;
+}
+
+.history-list p span {
+  color: #495057;
+  word-break: break-all;
+}
+
+.history-list p[style*="font-size: 0.8em"] {
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.history-list p[style*="font-size: 0.7em"] {
+  color: #adb5bd;
+  margin-top: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed #ced4da;
+  margin: 30px 0;
+}
+
+/* Responsiveness - from previous successful theme */
+@media (max-width: 1024px) {
+  .App {
+    padding: 20px;
+    margin: 20px;
+  }
+  body, html, #root {
+    align-items: flex-start;
+  }
+  .App > div[style*="display: flex"] {
