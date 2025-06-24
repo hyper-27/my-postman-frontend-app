@@ -195,7 +195,7 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', minWidth: '500px' , margin: '50px auto', padding: '50px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div className="App" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '1000px', minWidth: '800px' , margin: '50px auto', padding: '50px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <h1>My Postman Clone</h1>
 
       {/* Authentication Section - NEW */}
@@ -243,7 +243,7 @@ function App() {
 
       {/* Rest of your existing Request and History Sections - NOW CONDITIONAL */}
       {token && ( // <--- NEW: Only show main app if authenticated
-        <div style={{ display: 'flex', gap: '20px' , minWidth: '500px' }}>
+        <div style={{ display: 'flex', gap: '20px' , minWidth: '800px' }}>
           {/* Request Section */}
           <div className="request-section" style={{ flex: 2, marginBottom: '30px', padding: '15px', border: '1px solid #eee', borderRadius: '5px' }}>
             <h2>Request</h2>
