@@ -249,7 +249,7 @@ function App() {
 
       {/* Rest of your existing Request and History Sections - NOW CONDITIONAL */}
       {token && ( // <--- NEW: Only show main app if authenticated
-        <div style={{ display: 'flex', gap: '20px' , minWidth: '800px' }}>
+        <div style={{ display: 'flex', gap: '20px'  }}>
           {/* Request Section */}
           <div className="request-section" style={{ flex: 2, marginBottom: '30px', padding: '15px', border: '1px solid #eee', borderRadius: '5px' }}>
             <h2>Request</h2>
